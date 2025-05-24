@@ -1,0 +1,19 @@
+version: '3.9'
+services:
+  web:
+    build: .
+    ports:
+      - "3005:3005"
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo
+    container_name: mongo_with_named_volume
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db  # Named volume mounted to MongoDB's data directory
+
+volumes:
+  mongo-data:

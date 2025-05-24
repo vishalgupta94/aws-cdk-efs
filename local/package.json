@@ -12,6 +12,7 @@
   "dependencies": {
     "@types/express": "^5.0.2",
     "express": "^5.1.0",
+    "mongoose": "^8.15.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.3"
   }
