@@ -1,0 +1,2 @@
+docker build --tag baseimage . 
+docker run -p 3000:3000 --rm baseimage

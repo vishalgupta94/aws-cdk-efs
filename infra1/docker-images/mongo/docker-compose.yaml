@@ -1,0 +1,16 @@
+version: '3' # docker-compose version
+services:
+  mongodb:
+    image: mongo
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+
+  api-server:
+    image: base_mongo
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongodb
