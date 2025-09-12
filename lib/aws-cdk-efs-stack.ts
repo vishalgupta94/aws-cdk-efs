@@ -18,7 +18,25 @@ export class AwsCdkEfsStack extends cdk.Stack {
     this.taskExecutionRole = taskExecutionRole;
     this.taskRole = taskRole;
 
-    this.createFargateService()
+    const securityGroup = new SecurityGroup(this, "SecurityGroup", {
+      vpc: this.vpc
+    })
+    securityGroup.addIngressRule(Peer.anyIpv4(), Port.tcp(3005))
+
+    securityGroup.applyRemovalPolicy(cdk.RemovalPolicy.DESTROY);
+
+    this.createFargateService(securityGroup)
+
+    const efsSecurityGroup = new SecurityGroup(this, "efsSecurityGroup", {
+      vpc: this.vpc
+    })
+    efsSecurityGroup.addIngressRule(
+      securityGroup,
+      Port.tcp(2049),
+      'NFS sourceSG'
+    );
+
+    efsSecurityGroup.applyRemovalPolicy(cdk.RemovalPolicy.DESTROY);
     // The code that defines your stack goes here
 
     // example resource
@@ -27,7 +45,7 @@ export class AwsCdkEfsStack extends cdk.Stack {
     // });
   }
 
-  createFargateService(){
+  createFargateService(securityGroup: SecurityGroup){
     const mongoExpress = ContainerImage.fromAsset(join(process.cwd(), './lib/basic-mongo'), {
     });
 
@@ -64,13 +82,6 @@ export class AwsCdkEfsStack extends cdk.Stack {
 
     taskDefination.applyRemovalPolicy(cdk.RemovalPolicy.DESTROY);
 
-
-    const securityGroup = new SecurityGroup(this, "SecurityGroup", {
-      vpc: this.vpc
-    })
-    securityGroup.addIngressRule(Peer.anyIpv4(), Port.tcp(3005))
-
-    securityGroup.applyRemovalPolicy(cdk.RemovalPolicy.DESTROY);
 
     const service = new FargateService(this,"fargateService", {
       cluster: this.cluster,

@@ -9,12 +9,11 @@ export const getRoles = (scope: Construct,) => {
         assumedBy: new ServicePrincipal('ecs-tasks.amazonaws.com'),
     })
 
-    // taskRole.addManagedPolicy(ManagedPolicy.fromManagedPolicyArn(scope, "taskRole-PowerUser",
-    //     "arn:aws:iam::aws:policy/PowerUserAccess"
-    // ),)
+    taskRole.addManagedPolicy(ManagedPolicy.fromAwsManagedPolicyName("AWSXrayFullAccess"));
+
     taskRole.addManagedPolicy(ManagedPolicy.fromAwsManagedPolicyName(
         'service-role/AmazonECSTaskExecutionRolePolicy'
-    ),)
+    ))
 
     taskRole.applyRemovalPolicy(RemovalPolicy.DESTROY);
     // For ECS agent to pick up image from ECR, we need TaskExection Role.

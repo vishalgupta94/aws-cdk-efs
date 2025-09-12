@@ -1,0 +1,101 @@
+{
+    "taskDefinition": {
+        "taskDefinitionArn": "arn:aws:ecs:us-east-1:339713054130:task-definition/v2-ecs-4967-dev-fuse-ecs-app-fuse-ecs-app-node-service:2",
+        "containerDefinitions": [
+            {
+                "name": "v2-ecs-4967-dev-fuse-ecs-app-fuse-ecs-app-node-service-task",
+                "image": "339713054130.dkr.ecr.us-east-1.amazonaws.com/fuse-ecs-4967:latest2",
+                "cpu": 0,
+                "portMappings": [
+                    {
+                        "containerPort": 3000,
+                        "hostPort": 3000,
+                        "protocol": "tcp"
+                    }
+                ],
+                "essential": true,
+                "environment": [
+                    {
+                        "name": "AWS_ACCOUNT",
+                        "value": "339713054130"
+                    },
+                    {
+                        "name": "AWS_REGION",
+                        "value": "us-east-1"
+                    }
+                ],
+                "environmentFiles": [],
+                "mountPoints": [],
+                "volumesFrom": [],
+                "dockerSecurityOptions": [],
+                "ulimits": [],
+                "logConfiguration": {
+                    "logDriver": "awslogs",
+                    "options": {
+                        "awslogs-group": "/aws/ecs/fuse-ecs-app/fuse-ecs-app-node-service/log-group",
+                        "awslogs-region": "us-east-1",
+                        "awslogs-stream-prefix": "fuse-ecs-app-node-service"
+                    },
+                    "secretOptions": []
+                },
+                "systemControls": []
+            }
+        ],
+        "family": "v2-ecs-4967-dev-fuse-ecs-app-fuse-ecs-app-node-service",
+        "taskRoleArn": "arn:aws:iam::339713054130:role/fuse-ecs-app-fuse-ecs-app-node-service-task-role-us-east-1",
+        "executionRoleArn": "arn:aws:iam::339713054130:role/fuse-ecs-app-fuse-ecs-app-node-service-execution-role-us-east-1",
+        "networkMode": "awsvpc",
+        "revision": 2,
+        "volumes": [],
+        "status": "ACTIVE",
+        "requiresAttributes": [
+            {
+                "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
+            },
+            {
+                "name": "ecs.capability.execution-role-awslogs"
+            },
+            {
+                "name": "com.amazonaws.ecs.capability.ecr-auth"
+            },
+            {
+                "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
+            },
+            {
+                "name": "com.amazonaws.ecs.capability.task-iam-role"
+            },
+            {
+                "name": "ecs.capability.execution-role-ecr-pull"
+            },
+            {
+                "name": "ecs.capability.extensible-ephemeral-storage"
+            },
+            {
+                "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+            },
+            {
+                "name": "ecs.capability.task-eni"
+            }
+        ],
+        "placementConstraints": [],
+        "compatibilities": [
+            "EC2",
+            "FARGATE"
+        ],
+        "runtimePlatform": {
+            "cpuArchitecture": "X86_64",
+            "operatingSystemFamily": "LINUX"
+        },
+        "requiresCompatibilities": [
+            "FARGATE"
+        ],
+        "cpu": "256",
+        "memory": "512",
+        "registeredAt": "2025-06-05T14:14:35.974000+05:30",
+        "registeredBy": "arn:aws:iam::339713054130:user/vishal.gupta@appfire.com",
+        "ephemeralStorage": {
+            "sizeInGiB": 21
+        }
+    },
+    "tags": []
+}
