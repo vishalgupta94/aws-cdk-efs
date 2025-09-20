@@ -1,0 +1,76 @@
+{
+    "taskDefinition": {
+        "taskDefinitionArn": "arn:aws:ecs:ap-south-1:339713054130:task-definition/BasicFargateStacktaskDefination13DBF215:3",
+        "containerDefinitions": [
+            {
+                "name": "basic-faragte-task",
+                "image": "339713054130.dkr.ecr.ap-south-1.amazonaws.com/basic-fargate-registry:latest",
+                "cpu": 0,
+                "links": [],
+                "portMappings": [
+                    {
+                        "containerPort": 3000,
+                        "hostPort": 3000,
+                        "protocol": "tcp"
+                    }
+                ],
+                "essential": true,
+                "entryPoint": [],
+                "command": [],
+                "environment": [],
+                "environmentFiles": [],
+                "mountPoints": [],
+                "volumesFrom": [],
+                "secrets": [],
+                "dnsServers": [],
+                "dnsSearchDomains": [],
+                "extraHosts": [],
+                "dockerSecurityOptions": [],
+                "dockerLabels": {},
+                "ulimits": [],
+                "systemControls": [],
+                "credentialSpecs": []
+            }
+        ],
+        "family": "BasicFargateStacktaskDefination13DBF215",
+        "taskRoleArn": "arn:aws:iam::339713054130:role/BasicFargate-Stack-BasicFaragteTaskRole44B5D6C3-1jigynklE6KW",
+        "executionRoleArn": "arn:aws:iam::339713054130:role/BasicFargate-Stack-BasicFaragteExecutionRoleC86020C-lsoh0GZTf2BP",
+        "networkMode": "awsvpc",
+        "revision": 3,
+        "volumes": [],
+        "status": "ACTIVE",
+        "requiresAttributes": [
+            {
+                "name": "com.amazonaws.ecs.capability.ecr-auth"
+            },
+            {
+                "name": "com.amazonaws.ecs.capability.docker-remote-api.1.17"
+            },
+            {
+                "name": "com.amazonaws.ecs.capability.task-iam-role"
+            },
+            {
+                "name": "ecs.capability.execution-role-ecr-pull"
+            },
+            {
+                "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+            },
+            {
+                "name": "ecs.capability.task-eni"
+            }
+        ],
+        "placementConstraints": [],
+        "compatibilities": [
+            "EC2",
+            "FARGATE"
+        ],
+        "requiresCompatibilities": [
+            "FARGATE"
+        ],
+        "cpu": "256",
+        "memory": "512",
+        "registeredAt": "2025-09-20T11:57:26.591000+05:30",
+        "registeredBy": "arn:aws:sts::339713054130:assumed-role/cdk-hnb659fds-cfn-exec-role-339713054130-ap-south-1/AWSCloudFormation"
+    },
+    "tags": []
+}
