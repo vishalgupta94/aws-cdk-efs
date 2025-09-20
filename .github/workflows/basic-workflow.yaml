@@ -48,12 +48,22 @@ jobs:
           docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
           docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG     
 
+      - name: Render Amazon ECS task definition22
+        id: render-web-container2
+        env:
+          REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          REPOSITORY: basic-fargate-registry
+          IMAGE_TAG: ${{ github.sha }}
+        run: |
+          echo $REGISTRY/$REPOSITORY:$IMAGE_TAG
+
       - name: Render Amazon ECS task definition
         id: render-web-container
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         env:
           REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           REPOSITORY: basic-fargate-registry
+          IMAGE_TAG: ${{ github.sha }}
         with:
           task-definition: docker-images/basic-express/task-definition.json
           container-name: basic-faragte-task
