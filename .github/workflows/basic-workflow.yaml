@@ -58,7 +58,9 @@ jobs:
           task-definition: docker-images/basic-express/task-definition.json
           container-name: basic-faragte-task
           image: $REGISTRY/$REPOSITORY:$IMAGE_TAG
-          environment-variables: "LOG_LEVEL=info"        
+          environment-variables: "LOG_LEVEL=info"  
+        run: |
+          echo $REGISTRY/$REPOSITORY:$IMAGE_TAG        
 
       - name: Deploy to Amazon ECS service
         uses: aws-actions/amazon-ecs-deploy-task-definition@v2
