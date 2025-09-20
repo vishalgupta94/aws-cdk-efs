@@ -42,7 +42,7 @@ jobs:
           IMAGE_TAG: ${{ github.sha }}
         run: |
           echo ${{ steps.login-ecr.outputs.registry }}
-          ${{ github.sha }}
+          echo ${{ github.sha }}
           cd docker-images/basic-express 
           npm i
           docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
