@@ -54,7 +54,7 @@ jobs:
         with:
           task-definition: docker-images/basic-express/task-definition.json
           container-name: basic-faragte-task
-          image: 339713054130.dkr.ecr.ap-south-1.amazonaws.com/basic-fargate-registry:latest
+          image: $REGISTRY/$REPOSITORY:$IMAGE_TAG
           environment-variables: "LOG_LEVEL=info"        
 
       - name: Install deps
