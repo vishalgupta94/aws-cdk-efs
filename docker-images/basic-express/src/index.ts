@@ -12,7 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 app.get("/", (req: Request, res: Response) => {
     console.log("Health check requested2222");
     res.status(200).json({
-        message: "Hello World! Express server is running",
+        message: "Hello World! Express server is running222",
         timestamp: new Date().toISOString(),
         uptime: process.uptime()
     });
