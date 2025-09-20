@@ -67,7 +67,7 @@ jobs:
         with:
           task-definition: docker-images/basic-express/task-definition.json
           container-name: basic-faragte-task
-          image: $REGISTRY/$REPOSITORY:$IMAGE_TAG
+          image: $ {{ $REGISTRY/$REPOSITORY:$IMAGE_TAG }}
           environment-variables: "LOG_LEVEL=info"     
 
       - name: Show rendered task definition (pretty)
