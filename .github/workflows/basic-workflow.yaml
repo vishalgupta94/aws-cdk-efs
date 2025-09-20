@@ -23,9 +23,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-        
-      - name: Install deps
-        run: npm i
+      
 
       - name: Configure AWS credentials (OIDC)
         uses: aws-actions/configure-aws-credentials@v4
@@ -37,16 +35,19 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v2
 
-      # - name: Build, tag, and push docker image to Amazon ECR
-      #   env:
-      #     REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-      #     REPOSITORY: vishal-test
-      #     IMAGE_TAG: ${{ github.sha }}
-      #   run: |
-      #     echo ${{ steps.login-ecr.outputs.registry }}
-      #     ${{ github.sha }}
-      #     cd docker-images/basic-express && npm i && && docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
-      #     docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG          
+      - name: Build, tag, and push docker image to Amazon ECR
+        env:
+          REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          REPOSITORY: basic-fargate-registry
+          IMAGE_TAG: ${{ github.sha }}
+        run: |
+          echo ${{ steps.login-ecr.outputs.registry }}
+          ${{ github.sha }}
+          cd docker-images/basic-express && npm i && && docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
+          docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG          
+
+      - name: Install deps
+        run: npm i
 
       # - name: First test
       #   run: ls
