@@ -1,5 +1,4 @@
 {
-    "taskDefinition": {
         "taskDefinitionArn": "arn:aws:ecs:ap-south-1:339713054130:task-definition/BasicFargateStacktaskDefination13DBF215:3",
         "containerDefinitions": [
             {
@@ -71,6 +70,4 @@
         "memory": "512",
         "registeredAt": "2025-09-20T11:57:26.591000+05:30",
         "registeredBy": "arn:aws:sts::339713054130:assumed-role/cdk-hnb659fds-cfn-exec-role-339713054130-ap-south-1/AWSCloudFormation"
-    },
-    "tags": []
-}
+    }
