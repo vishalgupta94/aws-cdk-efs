@@ -73,7 +73,7 @@ jobs:
       - name: Deploy to Amazon ECS service
         uses: aws-actions/amazon-ecs-deploy-task-definition@v2
         with:
-          task-definition: ${{ steps.render-app-container.outputs.task-definition }}
+          task-definition: ${{ steps.render-web-container.outputs.task-definition }}
           service: basic-fargate-service
           cluster: BasicFargate-Stack-InfraBasicFargateCluster8C4A13E9-mzhLHRN30rAU       
 
