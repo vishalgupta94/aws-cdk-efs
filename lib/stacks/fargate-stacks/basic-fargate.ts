@@ -136,6 +136,7 @@ export class BasicFargate extends Stack {
             portMappings: [{
                 containerPort: 3000,
             }],
+            containerName: "basic-faragte-task"
         });
         taskDefinition.applyRemovalPolicy(RemovalPolicy.DESTROY)
         return taskDefinition
