@@ -51,11 +51,21 @@ jobs:
       - name: Render Amazon ECS task definition
         id: render-web-container
         uses: aws-actions/amazon-ecs-render-task-definition@v1
+        env:
+          REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          REPOSITORY: basic-fargate-registry
         with:
           task-definition: docker-images/basic-express/task-definition.json
           container-name: basic-faragte-task
           image: $REGISTRY/$REPOSITORY:$IMAGE_TAG
           environment-variables: "LOG_LEVEL=info"        
+
+      - name: Deploy to Amazon ECS service
+        uses: aws-actions/amazon-ecs-deploy-task-definition@v2
+        with:
+          task-definition: ${{ steps.render-app-container.outputs.task-definition }}
+          service: basic-fargate-service
+          cluster: BasicFargate-Stack-InfraBasicFargateCluster8C4A13E9-mzhLHRN30rAU       
 
       - name: Install deps
         run: npm i
