@@ -43,8 +43,21 @@ jobs:
         run: |
           echo ${{ steps.login-ecr.outputs.registry }}
           ${{ github.sha }}
-          cd docker-images/basic-express && npm i && && docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
-          docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG          
+          cd docker-images/basic-express && npm i && docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
+          docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG     
+
+      - name: Render Amazon ECS task definition
+        id: render-web-container
+        uses: aws-actions/amazon-ecs-render-task-definition@v1
+        with:
+          task-definition: task-definition.json
+          task-definition-arn:  task-definition-arn
+          task-definition-family: task-definition-family-name 
+          task-definition-revision: task-definition-revision
+          container-name: web
+          image: amazon/amazon-ecs-sample:latest
+          environment-variables: "LOG_LEVEL=info"
+          secrets: "SECRET_KEY=arn:aws:ssm:region:0123456789:parameter/secret"            
 
       - name: Install deps
         run: npm i
