@@ -43,7 +43,9 @@ jobs:
         run: |
           echo ${{ steps.login-ecr.outputs.registry }}
           ${{ github.sha }}
-          cd docker-images/basic-express && npm i && docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
+          cd docker-images/basic-express 
+          npm i
+          docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
           docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG     
 
       - name: Render Amazon ECS task definition
