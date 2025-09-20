@@ -70,8 +70,11 @@ jobs:
           image: $REGISTRY/$REPOSITORY:$IMAGE_TAG
           environment-variables: "LOG_LEVEL=info"     
 
-      - name: First td
-        run: echo  ${{ steps.render-web-container.outputs.task-definition }}           
+      - name: Show rendered task definition (pretty)
+        run: |
+          FILE='${{ steps.render-web-container.outputs.task-definition }}'
+          echo "Rendered file: $FILE"
+          jq . "$FILE" || cat "$FILE"     
 
       - name: Deploy to Amazon ECS service
         uses: aws-actions/amazon-ecs-deploy-task-definition@v2
